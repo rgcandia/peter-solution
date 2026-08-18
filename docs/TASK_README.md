@@ -6,6 +6,12 @@ Roadmap y backlog del sistema integral. Las fases se completan en orden secuenci
 
 ## Registro de avances (diario)
 
+### Resumen del día 2026-08-18
+
+**Backend completo** + **landing base** + **repo en GitHub**. Queda pendiente: bot de WhatsApp, dashboard admin, app técnico PWA, y pulido de la landing (SVG del logo, fotos reales, feed Instagram).
+
+---
+
 ### 2026-08-18 — Landing web (client-web)
 
 - [x] Scaffolding de `client-web/` (React + TS + Vite + lucide-react)
