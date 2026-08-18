@@ -1,0 +1,132 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────────────
+// Peter Solution Multiservicios — Modelo de datos
+// ─────────────────────────────────────────────
+
+enum Rol {
+  cliente
+  tecnico
+  admin
+}
+
+enum EstadoOrden {
+  pendiente
+  asignada
+  en_proceso
+  terminada
+  cerrada
+}
+
+enum Urgencia {
+  normal
+  urgente
+}
+
+enum CategoriaServicio {
+  plomeria
+  electricidad
+  gas
+  piletas
+  mantenimiento
+}
+
+// ── Clientes ──
+model Cliente {
+  id        Int      @id @default(autoincrement())
+  nombre    String
+  telefono  String   @unique
+  direccion String?
+  notas     String?
+  creadoEn  DateTime @default(now()) @map("creado_en")
+
+  ordenes   OrdenTrabajo[]
+  historial HistorialPropiedad[]
+
+  @@map("clientes")
+}
+
+// ── Técnicos ──
+model Tecnico {
+  id           Int                @id @default(autoincrement())
+  nombre       String
+  telefono     String?
+  especialidad CategoriaServicio?
+  activo       Boolean            @default(true)
+
+  ordenes      OrdenTrabajo[]
+
+  @@map("tecnicos")
+}
+
+// ── Servicios ──
+model Servicio {
+  id        Int                @id @default(autoincrement())
+  nombre    String
+  categoria CategoriaServicio?
+  precioRef Decimal?           @map("precio_ref") @db.Decimal(12, 2)
+  activo    Boolean            @default(true)
+
+  ordenes   OrdenTrabajo[]
+
+  @@map("servicios")
+}
+
+// ── Productos / Repuestos ──
+model ProductoRepuesto {
+  id             Int      @id @default(autoincrement())
+  nombre         String
+  descripcion    String?
+  precio         Decimal? @db.Decimal(12, 2)
+  stock          Int      @default(0)
+  conInstalacion Boolean  @default(false) @map("con_instalacion")
+
+  @@map("productos_repuestos")
+}
+
+// ── Órdenes de trabajo ──
+model OrdenTrabajo {
+  id          Int         @id @default(autoincrement())
+  clienteId   Int         @map("cliente_id")
+  tecnicoId   Int?        @map("tecnico_id")
+  servicioId  Int?        @map("servicio_id")
+  estado      EstadoOrden @default(pendiente)
+  urgencia    Urgencia    @default(normal)
+  descripcion String?
+  direccion   String?
+  fotos       Json        @default("[]")
+  firma       String?
+  checkinEn   DateTime?   @map("checkin_en")
+  creadoEn    DateTime    @default(now()) @map("creado_en")
+  cerradoEn   DateTime?   @map("cerrado_en")
+
+  cliente     Cliente     @relation(fields: [clienteId], references: [id])
+  tecnico     Tecnico?    @relation(fields: [tecnicoId], references: [id])
+  servicio    Servicio?   @relation(fields: [servicioId], references: [id])
+
+  @@index([estado])
+  @@index([clienteId])
+  @@index([tecnicoId])
+  @@map("ordenes_trabajo")
+}
+
+// ── Historial por propiedad (mantenimiento recurrente) ──
+model HistorialPropiedad {
+  id        Int      @id @default(autoincrement())
+  clienteId Int      @map("cliente_id")
+  direccion String
+  detalle   String?
+  fecha     DateTime @default(now())
+
+  cliente   Cliente  @relation(fields: [clienteId], references: [id])
+
+  @@index([clienteId])
+  @@map("historial_propiedad")
+}

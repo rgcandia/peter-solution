@@ -6,8 +6,8 @@ Roadmap y backlog del sistema integral. Las fases se completan en orden secuenci
 
 ## Estado general
 
-- [x] **Fase 1** — Infraestructura y Documentación *(en curso)*
-- [ ] **Fase 2** — Backend & API Gateway + Webhook WhatsApp Bot
+- [x] **Fase 1** — Infraestructura y Documentación *(completa)*
+- [ ] **Fase 2** — Backend & API Gateway + Webhook WhatsApp Bot *(en curso: API Gateway listo, bot pendiente)*
 - [ ] **Fase 3** — Landing Web + Catálogo + Feed de Instagram
 - [ ] **Fase 4** — Dashboard Web para Administración (PC)
 - [ ] **Fase 5** — WebApp / PWA para Técnicos de Campo
@@ -30,16 +30,22 @@ Roadmap y backlog del sistema integral. Las fases se completan en orden secuenci
 
 ## Fase 2: Backend & API Gateway + Webhook WhatsApp Bot
 
-- [ ] Estructurar `server/` (Node.js + Express, arquitectura modular)
-- [ ] API Gateway central con rutas versionadas (`/api/v1/...`)
-- [ ] Conexión a base de datos (PostgreSQL) con ORM
-- [ ] Tablas base: `clientes`, `ordenes_trabajo`, `tecnicos`, `servicios`, `productos_repuestos`, `historial_propiedad`
+- [x] Estructurar `server/` (Node.js + Express + TypeScript strict, ESM)
+- [x] API Gateway central con rutas versionadas (`/api/v1/...`)
+- [x] Conexión a base de datos (PostgreSQL) con **Prisma** + singleton
+- [x] Tablas base: `clientes`, `ordenes_trabajo`, `tecnicos`, `servicios`, `productos_repuestos`, `historial_propiedad` (schema Prisma listo)
+- [x] Seguridad: Helmet, CORS whitelist, rate limiting (global + auth), JWT con roles
+- [x] Validación de entrada con **Zod**
+- [x] Logging estructurado con **Pino**
+- [x] Manejo de errores global + graceful shutdown
+- [x] Tests base con **Vitest** + supertest (health, auth, 404)
+- [x] Docker: Dockerfile multi-stage + docker-compose (PostgreSQL)
 - [ ] Integración WhatsApp Business API (webhook) con el número `+54 9 11 3098-3806`
 - [ ] Flujo del bot: recepción de mensaje → captura de datos → pre-clasificación del arreglo → creación de orden
 - [ ] Captura de **fotos** del problema y **ubicación** del cliente vía WhatsApp
 - [ ] Menú de servicios (plomería, electricidad, gas, piletas, mantenimiento)
 - [ ] Confirmación de presupuesto y agendamiento básico
-- [ ] Autenticación y autorización (JWT) para los clientes del ecosistema
+- [ ] Autenticación real (reemplazar login placeholder por OTP WhatsApp)
 
 ---
 
