@@ -6,6 +6,16 @@ Roadmap y backlog del sistema integral. Las fases se completan en orden secuenci
 
 ## Registro de avances (diario)
 
+### 2026-08-18 — Landing web (client-web)
+
+- [x] Scaffolding de `client-web/` (React + TS + Vite + lucide-react)
+- [x] Paleta de colores del **logo real** detectada: rojo `#D21404` + azul `#03224B` (se corrigió la paleta aproximada anterior)
+- [x] Tipografía: Montserrat (títulos) + Inter (cuerpo)
+- [x] Componentes: `Navbar`, `Hero` (con stats + cards de servicios), `Servicios` (5 cards), `CtaWhatsApp`, `Footer`, `WhatsAppFloat`
+- [x] Enlaces de WhatsApp con mensaje precargado al `+54 9 11 3098-3806`
+- [x] Build verificado, corriendo en dev (`:5176`)
+- [ ] **Pendiente (Etapa 2)**: sección "Antes y Después" (feed Instagram), catálogo dinámico desde API, e-commerce
+
 ### 2026-08-18 — Scaffolding backend + DB + migración + repo
 
 - [x] Repo creado en GitHub: `rgcandia/peter-solution`

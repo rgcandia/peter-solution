@@ -19,11 +19,13 @@ Sistema integral para la gestión de **Peter Solution** — empresa de servicios
 
 | Color | Hex | Uso |
 |-------|-----|-----|
-| Azul oscuro | `#1A237E` | Primario — fondos, headers, botones principales |
-| Rojo | `#D32F2F` | Secundario — acentos, llamados a la acción, alertas |
+| Azul oscuro | `#03224B` | Primario — fondos, headers, navbar |
+| Rojo | `#D21404` | Secundario — acentos, llamados a la acción, CTA |
 | Blanco | `#FFFFFF` | Fondos claros, texto sobre azul |
-| Gris oscuro | `#212121` | Texto principal |
-| Gris medio | `#757575` | Texto secundario |
+| Gris oscuro | `#1A1A1A` | Texto principal |
+| Gris medio | `#6B7280` | Texto secundario |
+
+> Paleta detectada del logo oficial (JPEG 900×1600): rojo `#D21404` dominante + azul navy `#03224B`.
 
 Iconografía: herramientas, engranajes y mantenimiento.
 
