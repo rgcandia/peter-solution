@@ -4,6 +4,41 @@ Roadmap y backlog del sistema integral. Las fases se completan en orden secuenci
 
 ---
 
+## Registro de avances (diario)
+
+### 2026-08-18 — Scaffolding backend + DB + migración + repo
+
+- [x] Repo creado en GitHub: `rgcandia/peter-solution`
+- [x] Scaffolding del backend `server/` (Node 22 + Express + TS strict + ESM)
+- [x] PostgreSQL levantado con Docker Compose (puerto host **5433**, para no chocar con otros proyectos)
+- [x] Migración inicial de Prisma aplicada (`prisma migrate dev --name init`) — 6 tablas creadas
+- [x] API Gateway corriendo en `:4000` con `GET /api/v1/health` respondiendo OK
+- [x] Seguridad completa: Helmet, CORS, rate limit, JWT+roles, Zod, Pino, graceful shutdown
+- [x] 6 tests (Vitest + supertest) pasando
+- [x] Documentación: `MODELO_DE_NEGOCIO.md` creado
+- [ ] **Pendiente**: endpoints CRUD de servicios/clientes/técnicos/órdenes
+
+### Endpoints disponibles hasta ahora
+
+| Método | Ruta | Descripción |
+|--------|------|-------------|
+| GET | `/api/v1/health` | Health check |
+| POST | `/api/v1/auth/login` | Login (placeholder, credenciales de `.env`) |
+| GET | `/api/v1/auth/me` | Usuario autenticado (JWT) |
+
+### Comandos para levantar el proyecto
+
+```bash
+cd server
+cp .env.example .env          # ajustar JWT_SECRET
+docker compose up -d          # PostgreSQL en :5433
+npx prisma migrate dev        # aplicar migraciones
+npm run dev                   # API en :4000
+npm test                      # tests
+```
+
+---
+
 ## Estado general
 
 - [x] **Fase 1** — Infraestructura y Documentación *(completa)*

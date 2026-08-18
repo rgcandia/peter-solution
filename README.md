@@ -111,6 +111,7 @@ cd peter-solution
 
 ## 📚 Documentación
 
+- [`docs/MODELO_DE_NEGOCIO.md`](docs/MODELO_DE_NEGOCIO.md) — para qué sirve la app y cómo monetiza
 - [`docs/TASK_README.md`](docs/TASK_README.md) — Roadmap y backlog por fases
 - [`docs/ARQUITECTURA_Y_PROPUESTAS.md`](docs/ARQUITECTURA_Y_PROPUESTAS.md) — Arquitectura técnica detallada
 
