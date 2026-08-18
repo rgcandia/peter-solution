@@ -163,7 +163,26 @@ Pendiente → Asignada → En proceso → Terminada → Cerrada
 
 ## Módulo App Técnico (Móvil)
 
-PWA instalable para el técnico en campo (accesible desde el celular, sin publicar en stores).
+**Tecnología: PWA (Progressive Web App) — app web instalable**, construida con **React + TypeScript + Vite** + `vite-plugin-pwa`. No es una app nativa (React Native/Expo): se instala desde el navegador en el home del celular, sin publicar en App Store/Play Store, con actualizaciones automáticas.
+
+### Por qué PWA y no app nativa
+
+| | PWA (React + Vite) | App nativa (Expo) |
+|---|---|---|
+| Publicación | Instalable desde el navegador, sin stores | Requiere App Store/Play Store |
+| Desarrollo | Mismo stack que los otros 3 clientes | Stack aparte |
+| Costo | Cero | $25 Google / $99 Apple |
+| Actualizaciones | Automáticas | Re-publicación manual |
+
+### Capacidades del dispositivo en la PWA
+
+| Necesidad | Solución |
+|-----------|----------|
+| Fotos antes/después | `<input type="file" capture="environment">` o `getUserMedia` (cámara) |
+| Ubicación / mapas | `navigator.geolocation` + enlace "Cómo llegar" a Google Maps/Waze |
+| Firma del cliente | `<canvas>` táctil |
+| Check-in | Botón que registra `Date.now()` + geolocalización |
+| Offline (parcial) | Service worker: carga la ruta del día y sube evidencias al reconectar |
 
 ### Hoja de ruta diaria
 
@@ -285,10 +304,13 @@ CREATE TABLE historial_propiedad (
 | Backend | Node.js + Express + TypeScript |
 | Bot WhatsApp | WhatsApp Business Cloud API (webhook) |
 | Base de datos | PostgreSQL + Prisma/Sequelize |
-| Landing / E-commerce | React + Vite (+ framework e-commerce si escala) |
-| Dashboard Admin | React + Vite (PC) |
-| App Técnico | React + Vite (PWA) |
+| Landing / E-commerce (`client-web`) | React + TypeScript + Vite |
+| Dashboard Admin (`client-dashboard`) | React + TypeScript + Vite (PC) |
+| App Técnico (`client-mobile`) | React + TypeScript + Vite **+ `vite-plugin-pwa`** (PWA instalable) |
+| Auth | JWT + roles (`cliente` / `tecnico` / `admin`) |
 | Deploy | Docker + VPS / Vercel (fronts) + Cloudflare Tunnel |
+
+> **Nota:** los 4 clientes (`client-web`, `client-dashboard`, `client-mobile`) comparten el mismo stack (React + TS + Vite). `client-mobile` es una **PWA** (app web instalable), no una app nativa.
 
 ---
 
