@@ -12,7 +12,7 @@ Roadmap y backlog del sistema integral. Las fases se completan en orden secuenci
 - [x] Paleta de colores del **logo real** detectada: rojo `#D21404` + azul `#03224B` (se corrigió la paleta aproximada anterior)
 - [x] Tipografía: Montserrat (títulos) + Inter (cuerpo)
 - [x] Componentes: `Navbar`, `Hero` (con stats + cards de servicios), `Servicios` (5 cards), `CtaWhatsApp`, `Footer`, `WhatsAppFloat`
-- [x] **Logo procesado**: se descargó el logo (JPEG 900×1600), se le quitó el fondo blanco (chroma key con sharp) → PNG transparente, y se generaron 2 versiones (`logo-nav.png`, `logo-footer.png`) con padding
+- [x] **Logo procesado**: se descargó el logo (JPEG 900×1600), se detectó que el fondo es **rojo `#D21404`** (95% de la imagen) con contenido azul/negro. Se aplicó chroma key para quitar el fondo rojo y dejar solo el logo + texto en PNG transparente (2 versiones: `logo-nav.png`, `logo-footer.png`).
 - [x] **Logo integrado** en Navbar y Footer
 - [x] **Sección "Trabajos recientes"** con slider de comparación arrastrable (antes/después) + placeholders + botón "Ver más en Instagram"
 - [x] Enlaces de WhatsApp con mensaje precargado al `+54 9 11 3098-3806`
