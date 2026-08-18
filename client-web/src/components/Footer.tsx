@@ -17,7 +17,9 @@ export default function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div>
-            <div className="footer-logo">Peter Solution</div>
+            <div className="footer-logo">
+              <img src="/logo-footer.png" alt="Peter Solution" className="footer-logo-img" />
+            </div>
             <p>
               Servicios a domicilio, reparaciones y mantenimiento integral del hogar.
             </p>
