@@ -49,4 +49,32 @@ describe('API Gateway', () => {
     const res = await request(app).get('/api/v1/no-existe')
     expect(res.status).toBe(404)
   })
+
+  it('POST /api/v1/servicios sin token devuelve 401', async () => {
+    const res = await request(app).post('/api/v1/servicios').send({ nombre: 'Plomería' })
+    expect(res.status).toBe(401)
+  })
+
+  it('POST /api/v1/servicios con body inválido devuelve 400', async () => {
+    const login = await request(app)
+      .post('/api/v1/auth/login')
+      .send({ usuario: 'admin', password: 'admin123' })
+
+    const res = await request(app)
+      .post('/api/v1/servicios')
+      .set('Authorization', `Bearer ${login.body.token}`)
+      .send({})
+
+    expect(res.status).toBe(400)
+  })
+
+  it('GET /api/v1/clientes sin token devuelve 401', async () => {
+    const res = await request(app).get('/api/v1/clientes')
+    expect(res.status).toBe(401)
+  })
+
+  it('GET /api/v1/ordenes sin token devuelve 401', async () => {
+    const res = await request(app).get('/api/v1/ordenes')
+    expect(res.status).toBe(401)
+  })
 })

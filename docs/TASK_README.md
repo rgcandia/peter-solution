@@ -16,15 +16,33 @@ Roadmap y backlog del sistema integral. Las fases se completan en orden secuenci
 - [x] Seguridad completa: Helmet, CORS, rate limit, JWT+roles, Zod, Pino, graceful shutdown
 - [x] 6 tests (Vitest + supertest) pasando
 - [x] Documentación: `MODELO_DE_NEGOCIO.md` creado
-- [ ] **Pendiente**: endpoints CRUD de servicios/clientes/técnicos/órdenes
+- [x] Endpoints CRUD de servicios/clientes/técnicos/órdenes implementados y probados
 
 ### Endpoints disponibles hasta ahora
 
-| Método | Ruta | Descripción |
-|--------|------|-------------|
-| GET | `/api/v1/health` | Health check |
-| POST | `/api/v1/auth/login` | Login (placeholder, credenciales de `.env`) |
-| GET | `/api/v1/auth/me` | Usuario autenticado (JWT) |
+| Método | Ruta | Acceso | Descripción |
+|--------|------|--------|-------------|
+| GET | `/api/v1/health` | público | Health check |
+| POST | `/api/v1/auth/login` | público | Login (placeholder) |
+| GET | `/api/v1/auth/me` | JWT | Usuario autenticado |
+| GET | `/api/v1/servicios` | público | Listar servicios (catálogo) |
+| GET | `/api/v1/servicios/:id` | público | Obtener servicio |
+| POST | `/api/v1/servicios` | admin | Crear servicio |
+| PATCH | `/api/v1/servicios/:id` | admin | Actualizar servicio |
+| DELETE | `/api/v1/servicios/:id` | admin | Eliminar servicio |
+| GET | `/api/v1/clientes` | admin/tecnico | Listar clientes |
+| GET | `/api/v1/clientes/:id` | admin/tecnico | Obtener cliente |
+| POST | `/api/v1/clientes` | admin/tecnico | Crear cliente |
+| PATCH | `/api/v1/clientes/:id` | admin | Actualizar cliente |
+| DELETE | `/api/v1/clientes/:id` | admin | Eliminar cliente |
+| GET | `/api/v1/tecnicos` | admin/tecnico | Listar técnicos |
+| POST | `/api/v1/tecnicos` | admin | Crear técnico |
+| PATCH | `/api/v1/tecnicos/:id` | admin | Actualizar técnico |
+| DELETE | `/api/v1/tecnicos/:id` | admin | Eliminar técnico |
+| GET | `/api/v1/ordenes` | admin/tecnico | Listar órdenes (filtros estado/tecnico) |
+| GET | `/api/v1/ordenes/:id` | admin/tecnico | Obtener orden (con relaciones) |
+| POST | `/api/v1/ordenes` | admin/tecnico | Crear orden |
+| PATCH | `/api/v1/ordenes/:id` | admin/tecnico | Actualizar estado/asignar técnico |
 
 ### Comandos para levantar el proyecto
 
